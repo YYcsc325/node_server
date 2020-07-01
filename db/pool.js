@@ -4,7 +4,7 @@ var pool = mysql.createPool({
     port:8889,
     user:'root',
     password:'root',
-    database:'douban',
+    database:'loginList',
     connectionLimit:15,//最多几个链接 
     multipleStatements:true //能执行多条sql语句
 })

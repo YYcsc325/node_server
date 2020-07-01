@@ -8,33 +8,11 @@ var fs = require('fs');
 var compression = require("compression");             //压缩文件
 var bodyParser = require("body-parser");              //npm i body-parser
 var cookieParser = require("cookie-parser");
-// var mongoose = require('mongoose');
 var cors = require("cors");//跨域的
-
-
-// 连接MongoDB数据库     mongoDB         开启的时候给他打开
-// mongoose.connect('mongodb://127.0.0.1:27017/db_demo');
-
-// mongoose.connection.on("connected", function () {     //监听数据库连接成功
-//   console.log("MongoDB connected success.")
-// });
-
-// mongoose.connection.on("error", function () {
-//   console.log("MongoDB connected fail.")
-// });
-
-// mongoose.connection.on("disconnected", function () {
-//   console.log("MongoDB connected disconnected.")
-// });
-
-
 
 app.use(cookieParser());
 app.use(compression())//体积压缩的中间件,只要发送的文件都被压缩了
 //记录日志信息
-//记录日志的信息   combined common dev short tiny
-// app.use(morgan('combined'))
-// app.use(morgan(':method:status:url'))//可以自定义哪些信息
 var writeStream = fs.createWriteStream(__dirname+'/logs/morgan.txt');//这样是记录 所有的
 app.use(morgan(':method:status:url',{stream:writeStream}))
 //解析body中传来的数据，post请求的数据，下面两个解析了不同的提交方式，一个是表单提交，一个是对象
@@ -75,18 +53,8 @@ server.listen(3000,()=>{
 
 
 //路由部分
-var cart = require('./routes/cart');
-var goods = require('./routes/goods');
-var product = require('./routes/product');
-var user = require('./routes/user');
-var users = require('./routes/users');
-var chart = require('./routes/chart');
+var inforgram = require('./routes/inforgramUser');
 
 
 // 引入到相对应的模块处
-app.use('/cart',cart);
-app.use('/goods',goods);
-app.use('/product',product);
-app.use('/user',user);
-app.use('/users',users);
-app.use('/chart',chart);
+app.use('/inforgram', inforgram)
